@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Peppina — Anteprima Struttura Sito</title>
+<style>
+  :root {
+    --color-brown: #696158;
+    --color-brown-dark: #4a443d;
+    --color-grey: #808080;
+    --color-bg: #faf9f7;
+    --color-bg-alt: #f1efec;
+    --color-text: #33302c;
+    --color-text-soft: #5c5750;
+    --color-border: #b9b4ad;
+    --color-white: #ffffff;
+    --nav-height: 68px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  /* ---------- NAV ---------- */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--color-brown-dark);
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    overflow: visible;
+  }
+
+  .navbar .brand {
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  .navbar .brand small {
+    display: block;
+    font-weight: 400;
+    font-size: 0.7rem;
+    color: #d8d3cc;
+    letter-spacing: 0.04em;
+  }
+
+  .nav-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .nav-menu > li {
+    position: relative;
+    overflow: visible;
+  }
+
+  .nav-menu > li > a {
+    display: block;
+    padding: 12px 16px;
+    color: #eeece8;
+    text-decoration: none;
+    font-size: 0.92rem;
+    white-space: nowrap;
+    border-radius: 4px;
+    transition: background 0.15s ease;
+  }
+
+  .nav-menu > li > a:hover,
+  .nav-menu > li > a:focus {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .nav-menu > li.has-dropdown > a::after {
+    content: " ▾";
+    font-size: 0.7rem;
+    opacity: 0.8;
+  }
+
+  .dropdown {
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  }
+
+  .nav-menu > li.has-dropdown:hover .dropdown,
+  .nav-menu > li.has-dropdown:focus-within .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown li a {
+    display: block;
+    padding: 9px 12px;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 0.88rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .dropdown li a:hover,
+  .dropdown li a:focus {
+    background: var(--color-bg-alt);
+  }
+
+  /* ---------- BANNER ---------- */
+  .preview-banner {
+    background: #efe3c9;
+    color: #5c4b1e;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-bottom: 1px solid #dcc78f;
+  }
+
+  /* ---------- NOTA NUMERAZIONE ---------- */
+  .sequence-note {
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--color-text-soft);
+    background: var(--color-bg-alt);
+    border-bottom: 1px solid var(--color-border);
+    padding: 9px 16px;
+  }
+
+  /* ---------- PAGE SECTIONS ---------- */
+  .page-section {
+    scroll-margin-top: var(--nav-height);
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 60px 24px 40px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .page-section:first-of-type {
+    border-top: none;
+  }
+
+  .page-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-grey);
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+
+  .page-title {
+    font-size: 1.7rem;
+    color: var(--color-brown-dark);
+    margin: 0 0 6px;
+  }
+
+  .page-intro {
+    color: var(--color-text-soft);
+    font-size: 0.95rem;
+    margin: 0 0 28px;
+  }
+
+  .sub-block {
+    scroll-margin-top: var(--nav-height);
+    margin-bottom: 34px;
+  }
+
+  .sub-block-title {
+    font-size: 1.05rem;
+    color: var(--color-brown);
+    margin: 0 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--color-brown);
+    display: inline-block;
+  }
+
+  .content-blocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .block {
+    border: 2px dashed var(--color-border);
+    border-radius: 8px;
+    padding: 18px;
+    background: var(--color-bg-alt);
+  }
+
+  .block-num {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-grey);
+    margin-bottom: 8px;
+  }
+
+  .block h4 {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+    color: var(--color-text);
+  }
+
+  .block p {
+    margin: 0;
+    font-size: 0.87rem;
+    color: var(--color-text-soft);
+  }
+
+  /* pulsante CTA dentro i blocchi (rimandi verso Prenota) */
+  .cta-button {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 9px 18px;
+    background: var(--color-brown);
+    color: #ffffff !important;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .cta-button:hover,
+  .cta-button:focus {
+    background: var(--color-brown-dark);
+  }
+
+  /* ---------- NOVITÀ ---------- */
+  .novita {
+    max-width: 860px;
+    margin: 20px auto 40px;
+    padding: 28px 32px;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+
+  .novita h2 {
+    margin-top: 0;
+    font-size: 1.15rem;
+    color: var(--color-brown-dark);
+  }
+
+  .novita ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .novita li {
+    margin-bottom: 8px;
+    color: var(--color-text-soft);
+    font-size: 0.95rem;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--color-brown-dark);
+    color: #eeece8;
+    text-align: center;
+    padding: 36px 20px;
+    margin-top: 20px;
+    font-size: 0.88rem;
+  }
+
+  footer .footer-client {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  footer .footer-designer {
+    color: #cfc9c0;
+    margin-top: 10px;
+    line-height: 1.7;
+    font-size: 0.82rem;
+  }
+
+  footer a {
+    color: #eeece8;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px) {
+    .navbar {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 12px 16px;
+    }
+    .nav-menu {
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: flex-start;
+      margin-top: 8px;
+    }
+    .dropdown {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      border: none;
+      display: none;
+      background: rgba(255,255,255,0.06);
+      margin-top: 4px;
+    }
+    .nav-menu > li.has-dropdown:hover .dropdown,
+    .nav-menu > li.has-dropdown:focus-within .dropdown {
+      display: block;
+    }
+    .nav-menu > li.has-dropdown > a::after {
+      content: " ▾";
+    }
+  }
+</style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="brand">
+      La Peppina
+      <small>Anteprima struttura sito</small>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#prenota">Prenota</a></li>
+      <li class="has-dropdown">
+        <a href="#menu">Menu</a>
+        <ul class="dropdown">
+          <li><a href="#menu-categorie">Le nostre proposte</a></li>
+          <li><a href="#menu-degustazione">Percorsi degustazione</a></li>
+        </ul>
+      </li>
+      <li class="has-dropdown">
+        <a href="#storia">La Peppina</a>
+        <ul class="dropdown">
+          <li><a href="#storia-origini">Le origini di Peppina</a></li>
+          <li><a href="#storia-federica-carlo">Federica e Carlo</a></li>
+          <li><a href="#storia-ambiente">L'ambiente</a></li>
+          <li><a href="#storia-progetto">La nascita del progetto</a></li>
+        </ul>
+      </li>
+      <li class="has-dropdown">
+        <a href="#territorio">Territorio</a>
+        <ul class="dropdown">
+          <li><a href="#territorio-produttori">Produttori locali</a></li>
+          <li><a href="#territorio-orto">Orto &amp; erbe spontanee</a></li>
+          <li><a href="#territorio-stagionalita">Stagionalità &amp; sostenibilità</a></li>
+        </ul>
+      </li>
+      <li><a href="#riconoscimenti">Riconoscimenti</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+  </nav>
+
+  <div class="preview-banner">
+    Anteprima di struttura — non è il design finale.
+  </div>
+
+  <div class="sequence-note">
+    I numeri nei blocchi indicano l'ordine in cui i contenuti si susseguono scorrendo la pagina.
+  </div>
+
+  <!-- 1. HOME -->
+  <section class="page-section" id="home">
+    <span class="page-label">Pagina 1 / 7</span>
+    <h2 class="page-title">Home</h2>
+    <p class="page-intro">Prima pagina del sito: galleria fotografica a pieno schermo, proposta di valore e primi rimandi alle altre sezioni.</p>
+    <div class="content-blocks">
+      <div class="block">
+        <span class="block-num">Blocco 01</span>
+        <h4>Galleria fotografica a pieno schermo</h4>
+        <p>Sequenza di fotografie del locale, della chef e dei piatti, a pieno schermo, con claim di posizionamento.</p>
+        <a href="#prenota" class="cta-button">Prenota ora</a>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 02</span>
+        <h4>L'ambiente</h4>
+        <p>Anteprima degli spazi del locale, con link di approfondimento verso la sezione La Peppina.</p>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 03</span>
+        <h4>Invito alla prenotazione</h4>
+        <p>Blocco con messaggio e pulsante di prenotazione, posizionato dopo la presentazione degli spazi.</p>
+        <a href="#prenota" class="cta-button">Prenota il tuo tavolo</a>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 04</span>
+        <h4>Proposta di valore</h4>
+        <p>Frase di sintesi del concept: cucina camuna reinterpretata, prodotti locali e stagionali, identità territoriale.</p>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 05</span>
+        <h4>Anteprima "La Peppina"</h4>
+        <p>Estratto della narrazione con link di approfondimento verso la sezione La Peppina.</p>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 06</span>
+        <h4>Anteprima Menu</h4>
+        <p>Presentazione generale delle categorie di piatti, con fotografie e i percorsi degustazione, con link verso la sezione Menu.</p>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 07</span>
+        <h4>Riconoscimenti</h4>
+        <p>Premi e riconoscimenti ottenuti dalla trattoria, richiamati anche nella pagina dedicata.</p>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 08</span>
+        <h4>Invito alla prenotazione</h4>
+        <p>Blocco con pulsante di prenotazione.</p>
+        <a href="#prenota" class="cta-button">Prenota ora</a>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 09</span>
+        <h4>Recensioni</h4>
+        <p>Selezione di recensioni e valutazioni dei clienti, come ultimo blocco della pagina.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PRENOTA -->
+  <section class="page-section" id="prenota">
+    <span class="page-label">Pagina 2 / 7</span>
+    <h2 class="page-title">Prenota</h2>
+    <p class="page-intro">Pagina dedicata alla prenotazione, raggiungibile anche dai pulsanti presenti in Home, Menu e La Peppina.</p>
+    <div class="content-blocks">
+      <div class="block">
+        <span class="block-num">Blocco 01</span>
+        <h4>Prenotazione online</h4>
+        <p>Collegamento al sistema di prenotazione online (Coperto), con selezione data, orario e numero ospiti.</p>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 02</span>
+        <h4>Messaggio di benvenuto</h4>
+        <p>Testo di accompagnamento alla prenotazione, con indicazioni su disponibilità e tempi di conferma.</p>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 03</span>
+        <h4>Prenotazione telefonica</h4>
+        <p>Numero di telefono diretto per la prenotazione via telefono.</p>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 04</span>
+        <h4>Asporto</h4>
+        <p>Informazioni e contatto per gli ordini da asporto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. MENU -->
+  <section class="page-section" id="menu">
+    <span class="page-label">Pagina 3 / 7</span>
+    <h2 class="page-title">Menu</h2>
+    <p class="page-intro">Il menu dettagliato non viene pubblicato online: il menu completo viene inviato tramite WhatsApp dopo la prenotazione. La pagina presenta categorie generali di piatti, fotografie dei piatti e i percorsi degustazione.</p>
+
+    <div class="sub-block" id="menu-categorie">
+      <h3 class="sub-block-title">Le nostre proposte</h3>
+      <div class="content-blocks">
+        <div class="block">
+          <span class="block-num">Blocco 01</span>
+          <h4>Categorie di piatti</h4>
+          <p>Presentazione delle categorie (antipasti, primi, secondi, dolci), senza indicare i piatti specifici del menu.</p>
+        </div>
+        <div class="block">
+          <span class="block-num">Blocco 02</span>
+          <h4>Fotografie dei piatti</h4>
+          <p>Galleria fotografica dei piatti delle diverse categorie, per mostrare la qualità della cucina senza elencare il menu dettagliato.</p>
+        </div>
+        <div class="block">
+          <span class="block-num">Blocco 03</span>
+          <h4>Prodotti del territorio</h4>
+          <p>Panoramica sugli ingredienti e le materie prime locali e stagionali, con rimando alla pagina Territorio.</p>
+        </div>
+        <div class="block">
+          <span class="block-num">Blocco 04</span>
+          <h4>Il menu completo, su richiesta</h4>
+          <p>Il menu completo viene inviato tramite WhatsApp dopo la prenotazione del tavolo.</p>
+          <a href="#prenota" class="cta-button">Prenota per riceverlo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-block" id="menu-degustazione">
+      <h3 class="sub-block-title">Percorsi degustazione</h3>
+      <div class="content-blocks">
+        <div class="block">
+          <span class="block-num">Blocco 05</span>
+          <h4>Presentazione dei percorsi</h4>
+          <p>Descrizione del formato dei percorsi degustazione disponibili, con contestualizzazione dell'esperienza.</p>
+        </div>
+        <div class="block">
+          <span class="block-num">Blocco 06</span>
+          <h4>L'esperienza a tavola</h4>
+          <p>Come si svolge il percorso: ritmo del servizio, eventuali abbinamenti, durata indicativa.</p>
+        </div>
+        <div class="block">
+          <span class="block-num">Blocco 07</span>
+          <h4>Legame con la stagionalità</h4>
+          <p>Come i percorsi seguono la disponibilità dei prodotti locali e stagionali, in coerenza con la pagina Territorio.</p>
+        </div>
+        <div class="block">
+          <span class="block-num">Blocco 08</span>
+          <h4>Recensioni</h4>
+          <p>Estratto di recensioni dei clienti relative ai percorsi degustazione.</p>
+        </div>
+        <div class="block">
+          <span class="block-num">Blocco 09</span>
+          <h4>Info pratiche</h4>
+          <p>Allergeni, opzioni vegetariane, indicazioni per la prenotazione anticipata.</p>
+          <a href="#prenota" class="cta-button">Prenota il percorso</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. LA PEPPINA -->
+  <section class="page-section" id="storia">
+    <span class="page-label">Pagina 4 / 7</span>
+    <h2 class="page-title">La Peppina</h2>
+    <p class="page-intro">Sezione dedicata alla storia della trattoria, alle persone che la portano avanti oggi e agli ambienti che la caratterizzano.</p>
+
+    <div class="sub-block" id="storia-origini">
+      <h3 class="sub-block-title">Le origini di Peppina</h3>
+      <div class="content-blocks">
+        <div class="block">
+          <span class="block-num">Blocco 01</span>
+          <h4>Racconto storico</h4>
+          <p>Storia di Giuseppina Sandrinelli e nascita della trattoria: il nome, il contesto familiare e territoriale.</p>
+        </div>
+        <div class="block">
+          <span class="block-num">Blocco 02</span>
+          <h4>Immagini d'epoca</h4>
+          <p>Fotografie storiche legate alle origini del locale.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-block" id="storia-federica-carlo">
+      <h3 class="sub-block-title">Federica e Carlo</h3>
+      <div class="content-blocks">
+        <div class="block">
+          <span class="block-num">Blocco 03</span>
+          <h4>Presentazione dei gestori attuali</h4>
+          <p>Ruolo di Federica e Carlo in cucina e in sala, il legame con l'eredità di Peppina.</p>
+        </div>
+        <div class="block">
+          <span class="block-num">Blocco 04</span>
+          <h4>Ritratti fotografici</h4>
+          <p>Foto di Federica e Carlo, in cucina e in sala.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-block" id="storia-ambiente">
+      <h3 class="sub-block-title">L'ambiente</h3>
+      <div class="content-blocks">
+        <div class="block">
+          <span class="block-num">Blocco 05</span>
+          <h4>Gli spazi</h4>
+          <p>Immagini della sala, degli spazi esterni e del design degli ambienti, per valorizzare la cura estetica del locale.</p>
+        </div>
+        <div class="block">
+          <span class="block-num">Blocco 06</span>
+          <h4>Lo staff</h4>
+          <p>Fotografie dello staff in cucina e in sala, che accoglie e serve ogni giorno.</p>
+        </div>
+        <div class="block">
+          <span class="block-num">Blocco 07</span>
+          <h4>Eventuale video/tour</h4>
+          <p>Spazio per un video di presentazione o un tour virtuale del locale.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-block" id="storia-progetto">
+      <h3 class="sub-block-title">La nascita del progetto</h3>
+      <div class="content-blocks">
+        <div class="block">
+          <span class="block-num">Blocco 08</span>
+          <h4>Evoluzione gastronomica</h4>
+          <p>Racconto del percorso da locale tradizionale a destinazione gastronomica riconosciuta, mantenendo l'identità originaria e trasmettendo un'atmosfera elegante e curata negli ambienti.</p>
+        </div>
+        <div class="block">
+          <span class="block-num">Blocco 09</span>
+          <h4>Visione e filosofia</h4>
+          <p>Approccio alla cucina camuna reinterpretata con tecniche contemporanee.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-blocks">
+      <div class="block">
+        <span class="block-num">Blocco 10</span>
+        <h4>Invito alla prenotazione</h4>
+        <p>Chiusura della sezione con pulsante di prenotazione.</p>
+        <a href="#prenota" class="cta-button">Prenota ora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. TERRITORIO -->
+  <section class="page-section" id="territorio">
+    <span class="page-label">Pagina 5 / 7</span>
+    <h2 class="page-title">Territorio</h2>
+    <p class="page-intro">Sezione dedicata a produttori locali, orto, erbe spontanee e stagionalità.</p>
+
+    <div class="sub-block" id="territorio-produttori">
+      <h3 class="sub-block-title">Produttori locali</h3>
+      <div class="content-blocks">
+        <div class="block">
+          <span class="block-num">Blocco 01</span>
+          <h4>Presentazione dei partner</h4>
+          <p>Produttori e fornitori locali con cui collabora la trattoria.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-block" id="territorio-orto">
+      <h3 class="sub-block-title">Orto &amp; erbe spontanee</h3>
+      <div class="content-blocks">
+        <div class="block">
+          <span class="block-num">Blocco 02</span>
+          <h4>L'orto della trattoria</h4>
+          <p>Racconto dell'orto di proprietà e della raccolta di erbe spontanee del territorio.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-block" id="territorio-stagionalita">
+      <h3 class="sub-block-title">Stagionalità &amp; sostenibilità</h3>
+      <div class="content-blocks">
+        <div class="block">
+          <span class="block-num">Blocco 03</span>
+          <h4>Approccio stagionale</h4>
+          <p>Come il menu cambia in base alla stagionalità dei prodotti e all'identità della Valle Camonica.</p>
+        </div>
+        <div class="block">
+          <span class="block-num">Blocco 04</span>
+          <h4>Sostenibilità</h4>
+          <p>Pratiche sostenibili nella scelta degli ingredienti e nella gestione del locale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. RICONOSCIMENTI -->
+  <section class="page-section" id="riconoscimenti">
+    <span class="page-label">Pagina 6 / 7</span>
+    <h2 class="page-title">Riconoscimenti</h2>
+    <p class="page-intro">Sezione dedicata ai premi e ai riconoscimenti ottenuti dalla trattoria.</p>
+    <div class="content-blocks">
+      <div class="block">
+        <span class="block-num">Blocco 01</span>
+        <h4>Premi e menzioni</h4>
+        <p>Guide gastronomiche, premi e riconoscimenti ottenuti nel tempo.</p>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 02</span>
+        <h4>Rassegna stampa</h4>
+        <p>Citazioni o articoli pubblicati su testate di settore.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CONTATTI -->
+  <section class="page-section" id="contatti">
+    <span class="page-label">Pagina 7 / 7</span>
+    <h2 class="page-title">Contatti</h2>
+    <p class="page-intro">Informazioni pratiche per raggiungere e contattare la trattoria.</p>
+    <div class="content-blocks">
+      <div class="block">
+        <span class="block-num">Blocco 01</span>
+        <h4>Informazioni di contatto</h4>
+        <p>Indirizzo (Via 4 Novembre, 7 - Esine), telefono, email e orari di apertura.</p>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 02</span>
+        <h4>Mappa</h4>
+        <p>Mappa con la localizzazione geografica del locale.</p>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 03</span>
+        <h4>Form di contatto</h4>
+        <p>Campi nome, cognome e messaggio.</p>
+      </div>
+      <div class="block">
+        <span class="block-num">Blocco 04</span>
+        <h4>Social</h4>
+        <p>Collegamenti a Facebook e WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="novita">
+    <h2>Novità rispetto al sito attuale</h2>
+    <ul>
+      <li>Home page ridisegnata con galleria fotografica a pieno schermo e proposta di valore immediata: oggi la homepage si apre sul logo e su testi generici, senza un messaggio chiaro nei primi secondi.</li>
+      <li>"Prenota" diventa la seconda pagina del sito, subito dopo la Home.</li>
+      <li>Vengono aggiunti rimandi diretti (bottoni) anche dalle sezioni Menu e La Peppina, non solo da un singolo link in mezzo al menu come oggi.</li>
+      <li>La pagina Menu non mostra il menu dettagliato: presenta categorie generiche di piatti, fotografie dei piatti, i percorsi degustazione e i prodotti del territorio.</li>
+      <li>Le attuali pagine "La Peppina" e "La Trattoria e la Storia" vengono riunite, insieme alla galleria fotografica del locale e dello staff, in un'unica sezione "La Peppina", organizzata in quattro sottosezioni: le origini, Federica e Carlo, l'ambiente, la nascita del progetto.</li>
+      <li>Nuova pagina "Territorio" dedicata a produttori locali, orto, erbe spontanee e stagionalità: nel sito attuale il territorio è solo citato, mai raccontato in una sezione dedicata.</li>
+      <li>La sezione "Riconoscimenti" diventa una pagina autonoma, posizionata dopo Territorio.</li>
+      <li>Aggiunto un blocco Recensioni in Home, ripreso anche nella pagina Menu, nella parte dedicata ai percorsi degustazione.</li>
+      <li>Contatti, mappa, form e social confermati nella funzione attuale, riorganizzati graficamente nella nuova struttura.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <div class="footer-client">Trattoria La Peppina</div>
+    <div>Anteprima di struttura sito — documento di lavoro, non design finale</div>
+    <div class="footer-designer">
+      © 2026 • FLP DESIGN • P.IVA 02815430810 • Tutti i diritti sono riservati • FEDERICA LO PINTO<br>
+      <a href="https://www.federicalopinto.it">www.federicalopinto.it</a> / <a href="tel:+393285839255">(+39) 328.5839255</a><br>
+      <a href="mailto:design@federicalopinto.it">design@federicalopinto.it</a> / <a href="mailto:federica.lp93@pec.it">federica.lp93@pec.it</a>
+    </div>
+  </footer>
+
+</body>
+</html>
